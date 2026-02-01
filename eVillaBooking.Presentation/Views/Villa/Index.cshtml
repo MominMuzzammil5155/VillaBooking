@@ -1,0 +1,54 @@
+﻿@using eVillaBooking.Domain.Entities
+@model IEnumerable<Villa>
+
+<div class="container mt-4">
+
+    <!-- Green Title Bar -->
+    <div class="bg-success text-white py-3 text-center rounded-top">
+        <h2 class="m-0">Villa List</h2>
+    </div>
+
+    <!-- White Card Box -->
+    <div class="border rounded-bottom p-3 shadow-sm" style="background-color">
+
+        <!-- Add New Villa Button -->
+        <div class="text-end mb-3">
+            <a asp-action="Create" asp-controller="Villa" class="btn btn-danger">
+                <i class="bi bi-plus-circle-fill"></i> Add New Villa
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-light fw-bold">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Square Feet</th>
+                        <th>Occupancy</th>
+						<th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var villa in Model)
+                    {
+                        <tr>
+                            <td>@villa.Name</td>
+                            <td>@villa.Description</td>
+                            <td>@villa.Price</td>
+                            <td>@villa.Sqft</td>
+                            <td>@villa.Occupancy</td>
+                            <td>
+                                <a class="btn btn-primary" asp-controller="Villa" asp-action="Edit" asp-route-id="@villa.Id">Edit</a>
+                                <a class="btn btn-danger" asp-controller="Villa" asp-action="Delete" asp-route-id="@villa.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
